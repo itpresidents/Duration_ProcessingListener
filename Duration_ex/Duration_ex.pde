@@ -85,6 +85,11 @@ void oscEvent(OscMessage theOscMessage) {
     theOscMessage.print();
   }
 
+  if (theOscMessage.addrPattern().equals ("/duration/info") && theOscMessage.get(1).stringValue().equals("/curves")) {
+    curveMin = theOscMessage.get(2).floatValue();
+    curveMin = theOscMessage.get(3).floatValue();
+  }
+
   if (theOscMessage.addrPattern().equals ("/curves")) {
     oneCurve = theOscMessage.get(0).floatValue();
   }
@@ -108,11 +113,6 @@ void oscEvent(OscMessage theOscMessage) {
 
   if (theOscMessage.addrPattern().equals ("/flags")) {
     fiveFlag = theOscMessage.get(0).stringValue();
-  }
-
-  if (theOscMessage.addrPattern().equals ("/duration/info") && theOscMessage.get(1).stringValue().equals("/curves")) {
-    curveMin = theOscMessage.get(2).floatValue();
-    curveMin = theOscMessage.get(3).floatValue();
   }
 
   //uncomment if you want to print out all the messages
